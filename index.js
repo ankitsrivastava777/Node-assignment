@@ -40,64 +40,68 @@ var post = conn.model('users', users_schema);
 
 
 
-// var new_post1 = new post({
-//     _id: new mongoose.Types.ObjectId(),
-//     username: 'Ankit3323',
+var new_post1 = new post({
+    _id: new mongoose.Types.ObjectId(),
+    username: 'Ankit3323',
 
-//     lastname: 'Srivastava',
-//     email: 'ankit@gmail.com',
-//     password: passwordHash.generate('type: String, required: true'),
-//     date: new Date() + ""
+    lastname: 'Srivastava',
+    email: 'ankit@gmail.com',
+    password: passwordHash.generate('type: String, required: true'),
+    date: new Date() + ""
 
-// });
+});
 
-// var new_post = new user({
-//     userId: new_post1._id,
-//     dob: 'Ankit333',
+var new_post = new user({
+    userId: new_post1._id,
+    dob: 'Ankit333',
 
-//     mobile: 'Srivastava',
-//     date: new Date() + ""
+    mobile: 'Srivastava',
+    date: new Date() + ""
 
-// });
+});
 
-// var new_post = new post({
+var new_post = new post({
 
-//     dob: 
-//     date: new Date() + ""
+    dob:
+        date: new Date() + ""
 
-// });
+});
 
-// new_post.save(function (err) {
+new_post.save(function (err) {
 
-//     //save done
+    //save done
 
-//     if (err) {
+    if (err) {
 
-//         console.log(err);
+        console.log(err);
 
-//         process.exit();
+        process.exit();
 
-//     }
+    }
 
-//     console.log('Post Saved')
+    console.log('Post Saved')
 
-// });
+});
 
-// new_post1.save(function (err) {
+new_post1.save(function (err) {
 
-//     //save done
+    //save done
 
-//     if (err) {
+    if (err) {
 
-//         console.log(err);
+        console.log(err);
 
-//         process.exit();
+        process.exit();
 
-//     }
+    }
 
-//     console.log('Post Saved2')
+    console.log('Post Saved2')
 
-// });
+});
+
+
+
+//using async method
 
 
 var async = require("async");
@@ -126,14 +130,11 @@ for (var i = 0; i < 5; i++) {
         age: Math.random(100),
         mobile: 'Srivastava',
         date: new Date() + ""
-
     });
-
 }
-console.log(records);
-console.log(records2);
+// console.log(records);
+// console.log(records2);
 // function insertAndNotify(records, callback) {
-
 async.eachLimit(records, 5, function (row, callback) {
 
     var new_post = new post({
@@ -141,7 +142,7 @@ async.eachLimit(records, 5, function (row, callback) {
         username: row.username,
         lastname: row.lastname,
         email: row.email,
-        password:row.password,
+        password: row.password,
         date: new Date() + ""
 
     });
@@ -175,7 +176,7 @@ async.eachLimit(records2, 5, function (row, callback) {
         userId: row.userId,
         dob: row.dob,
         age: row.age,
-        mobile:row.mobile,
+        mobile: row.mobile,
         date: new Date() + ""
 
     });
@@ -183,21 +184,14 @@ async.eachLimit(records2, 5, function (row, callback) {
     new_post1.save(function (err, row) {
 
         if (err) {
-
             console.log(err);
-
             callback(err);
-
         }
-
         else {
             console.log('success2');
             callback();
-
         }
-
     });
-
 }
 
 );
